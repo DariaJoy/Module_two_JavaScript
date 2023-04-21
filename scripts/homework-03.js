@@ -50,11 +50,22 @@ const getAccumulatedIncome = (salary, extraMoney, requiredExpenses) =>
 const getTargetMonth = (accumulatedIncome, purpose) => 
     Math.ceil(purpose / accumulatedIncome);
 
+//ДЗ 08
+
+const checkNumber = (question) => {
+    const answer = Number.parseFloat(prompt(question));
+
+    while (isNaN(answer)) {
+        alert(`Введите число!`)
+        return checkNumber(question)
+    } return answer
+};    
+
 const init = () => {
-    const salary = +prompt('Ваш месячный доход?');
+    const salary = checkNumber('Ваш месячный доход?');
         console.log(salary);
 
-    const extraMoney = +prompt(`Назовите возможный доход за ваши дополнительные работы?`);
+    const extraMoney = checkNumber(`Назовите возможный доход за ваши дополнительные работы?`);
         console.log(extraMoney);
 
     const expensesCategories = prompt('Перечислите возможные расходы за рассчитываемый период через запятую (пример: "питание, проезд")?')
@@ -63,12 +74,12 @@ const init = () => {
         return `${ trimmedtItem[0].toLocaleUpperCase() }${ trimmedtItem.slice(1) }`});
         console.log(expensesCategories);
 
-    const requiredExpenses = +prompt('Во сколько обойдуться обязательные статьи расходов?');
+    const requiredExpenses = checkNumber('Во сколько обойдуться обязательные статьи расходов?');
         console.log(requiredExpenses);
 
     const accumulatedIncome = getAccumulatedIncome(salary, extraMoney, requiredExpenses);
 
-    const purpose = +prompt('Сколько вы хотите накопить?');
+    const purpose = checkNumber('Сколько вы хотите накопить?');
         console.log(purpose);
 
     const months = getTargetMonth(accumulatedIncome, purpose);
@@ -88,9 +99,29 @@ const init = () => {
 
     console.clear;
 
-    console.log(`Ваш бюджет на месяц с учетом ваших расходовсоставляет: ${accumulatedIncome}. Ваша цель накопить ${purpose} с учетом всех ваших расходов будет достигнута через ${months} месяца (-ев). Дневной бюджет: ${budgetPerDay}`);
+    console.log(months > 0
+        ? `Ваш бюджет на месяц с учетом ваших расходовсоставляет: ${accumulatedIncome}. Ваша цель накопить ${purpose} с учетом всех ваших расходов будет достигнута через ${months} месяца (-ев). Дневной бюджет: ${budgetPerDay}`
+        : 'Ваша цель не может быть достигнута');
 };
 
 init();
 
 
+//Дополнительное ДЗ-08
+
+const arr = ['9348', '400909', '29898', '40283', '3987', '99665', '8987'];
+
+console.log(arr.filter(number => ['2', '4'].includes(number[0])));
+
+
+const cutText = (text) => {
+    if (typeof text === 'string' ) {
+        text = text.trim();
+        if (text.length > 30 ) {
+            text = text.slice(0, 30).concat('...');
+        } return text;
+    } else console.log('Введитие текст!')
+};
+const resaltcutText = cutText(`Lorem ipsum dolor, sit amet consectetur adipisicing elit. Hic incidunt ipsam facere aperiam obcaecati aut ad delectus iste exercitationem qui!`);
+
+console.log(resaltcutText)
