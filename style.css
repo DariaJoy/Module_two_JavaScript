@@ -7,7 +7,8 @@
 
 body {
   background-color: ghostwhite;
-  margin-top      : 100px;
+  margin          : 40px 100px;
+
 }
 
 h2 {
@@ -22,7 +23,7 @@ h2 {
   height         : fit-content;
   border         : 2px solid black;
   border-radius  : 5px;
-  width          : 70%;
+  width          : 90%;
 
 }
 
